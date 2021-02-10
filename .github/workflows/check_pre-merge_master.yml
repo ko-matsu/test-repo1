@@ -16,5 +16,5 @@ jobs:
     steps:
     - name: wait 60 sec
       run: sleep 60
-    - name: test2
-      run: echo "call test2"
+    - name: test3
+      run: echo "call test3"
