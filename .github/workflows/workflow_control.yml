@@ -2,7 +2,7 @@ name: workflow control
 
 on: 
   pull_request_target:
-    types: [opened, synchronize, labeled]
+    types: [opened, synchronize, labeled, closed]
     paths:
       '.github/workflows/**'
 
@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+    - if: contains(github.event.pull_request.labels.*.name, 'update CI') != true
+      uses: rokroskar/workflow-run-cleanup-action@master
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     - if: contains(github.event.pull_request.labels.*.name, 'update CI') != true
       run: exit 1
     - if: success()
