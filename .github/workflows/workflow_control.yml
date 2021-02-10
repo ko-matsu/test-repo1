@@ -1,0 +1,17 @@
+name: workflow control
+
+on: 
+  pull_request_target:
+    types: [opened, synchronize, labeled]
+
+jobs:
+  check actions:
+    if: contains(github.event.pull_request.paths, '.github/workflows/**')
+    name: check actions
+    runs-on: ubuntu-20.04
+
+    steps:
+    - if: !contains(github.event.pull_request.labels.*.name, 'update CI')
+      run: exit 1
+    - if: success()
+      run: echo "enabled editing workflow."
