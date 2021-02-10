@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - if: contains(github.event.pull_request.paths, '.github/workflows/**') != true && contains(github.event.pull_request.labels.*.name, 'update CI') != true
+    - if: contains(github.event.pull_request.paths, '.github/workflows/**') == true && contains(github.event.pull_request.labels.*.name, 'update CI') != true
       run: exit 1
     - if: success()
       run: echo "enabled editing workflow."
