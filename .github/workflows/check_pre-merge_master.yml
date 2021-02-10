@@ -14,5 +14,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+    - name: wait 60 sec
+      run: sleep 60
     - name: test2
       run: echo "call test2"
