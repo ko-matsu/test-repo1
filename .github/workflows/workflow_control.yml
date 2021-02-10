@@ -12,7 +12,10 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+    - name: wait 30 sec
+      run: sleep 30
     - if: contains(github.event.pull_request.labels.*.name, 'update CI') != true
+      name: cancel workflows
       uses: rokroskar/workflow-run-cleanup-action@master
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
