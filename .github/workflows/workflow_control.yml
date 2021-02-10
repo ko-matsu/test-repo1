@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, labeled]
 
 jobs:
-  check actions:
+  check-actions:
     if: contains(github.event.pull_request.paths, '.github/workflows/**')
     name: check actions
     runs-on: ubuntu-20.04
